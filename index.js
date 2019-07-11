@@ -25,25 +25,31 @@ const StyledInput = styled.input`
     }
     return props.border || '1px solid #909090';
   }};
+  ::-webkit-datetime-edit {
+    opacity: ${props => props.value === '' && '0.6'};
+  }
   background-color: ${props => props.background || props.bg};
   border-radius: ${props => (props.borderRadius ? props.borderRadius : '6px')};
   width: 100%;
   height: 100%;
-  ::-webkit-datetime-edit {
-    opacity: ${props => props.value === '' && '0.6'};
-  }
   :hover {
     ::-webkit-datetime-edit {
       opacity: 1;
     }
-    color: ${props => (props.colorHover ? props.colorHover : '#000000')};
+    color: ${props =>
+      props.colorHover ? props.colorHover : props.color || '#000000'};
     border: ${props => {
       if (props.error) {
         return props.errorBorder || '1px solid red';
       }
-      return props.borderHover || '1px solid #000000';
+      return props.borderHover
+        ? props.borderHover
+        : props.border || '1px solid #000000';
     }};
-    background-color: ${props => props.backgroundHover || props.bgHover};
+    background-color: ${props =>
+      props.backgroundHover
+        ? props.backgroundHover
+        : props.background || props.bg};
     cursor: text;
     ::placeholder {
       opacity: 1;
@@ -51,14 +57,20 @@ const StyledInput = styled.input`
   }
   :focus {
     outline-offset: 0;
-    color: ${props => (props.colorFocus ? props.colorFocus : '#000000')};
+    color: ${props =>
+      props.colorFocus ? props.colorFocus : props.color || '#000000'};
     border: ${props => {
       if (props.error) {
         return props.errorBorder || '1px solid red';
       }
-      return props.borderFocus || '1px solid #2e66ff';
+      return props.borderFocus
+        ? props.borderFocus
+        : props.border || '1px solid #2e66ff';
     }};
-    background-color: ${props => props.backgroundFocus || props.bgFocus};
+    background-color: ${props =>
+      props.backgroundFocus
+        ? props.backgroundFocus
+        : props.background || props.bg};
     ::placeholder {
       opacity: 0;
     }
