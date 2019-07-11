@@ -132,6 +132,7 @@ class TextField extends React.PureComponent {
         </StyledLegend>
         <StyledInput
           {...props}
+          error={error}
           name={name}
           type={type}
           value={value || ''}
