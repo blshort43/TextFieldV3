@@ -29,7 +29,13 @@ const StyledInput = styled.input`
   border-radius: ${props => (props.borderRadius ? props.borderRadius : '6px')};
   width: 100%;
   height: 100%;
+  ::-webkit-datetime-edit {
+    opacity: ${props => props.value === '' && '0.6'};
+  }
   :hover {
+    ::-webkit-datetime-edit {
+      opacity: 1;
+    }
     color: ${props => (props.colorHover ? props.colorHover : '#000000')};
     border: ${props => {
       if (props.error) {
