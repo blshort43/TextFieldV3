@@ -111,7 +111,7 @@ class TextField extends React.PureComponent {
   };
 
   render() {
-    const { type, name, value, label, labelColor, ...props } = this.props;
+    const { type, name, value, label, labelColor, placeholder, ...props } = this.props;
     return (
       <StyledCard
         {...props}
@@ -136,6 +136,7 @@ class TextField extends React.PureComponent {
           name={name}
           type={type}
           value={value || ''}
+          placeholder={placeholder || label}
           style={{
             height: '100%',
             width: '100%',
