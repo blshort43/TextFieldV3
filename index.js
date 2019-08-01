@@ -9,6 +9,8 @@ const StyledCard = styled(Card)`
   width: ${props => (props.width ? props.width : '200px')};
   height: ${props => (props.height ? props.height : '55px')};
   border-radius: ${props => (props.borderRadius ? props.borderRadius : '6px')};
+  margin-top: ${props =>
+    props.marginTop || props.mt ? props.marginTop || props.mt : '17px'};
 `;
 
 const StyledInput = styled.input`
@@ -87,16 +89,17 @@ const StyledLegend = styled.legend`
   box-sizing: border-box;
 `;
 
+const ErrorText = styled.p`
+  color: red;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+`;
+
 class TextField extends React.PureComponent {
   state = {
     focused: false,
   };
-
-  componentDidMount() {
-    if (this.props.value !== '') {
-      this.handleFocus();
-    }
-  }
 
   handleFocus = () => {
     this.setState({ focused: true });
@@ -111,7 +114,16 @@ class TextField extends React.PureComponent {
   };
 
   render() {
-    const { type, name, value, label, labelColor, placeholder, ...props } = this.props;
+    const {
+      type,
+      name,
+      value,
+      label,
+      labelColor,
+      error,
+      placeholder,
+      ...props
+    } = this.props;
     return (
       <StyledCard
         {...props}
@@ -122,9 +134,11 @@ class TextField extends React.PureComponent {
         <StyledLegend
           labelColor={labelColor}
           style={{
-            opacity: `${this.state.focused ? 1 : 0}`,
+            opacity: `${this.state.focused || this.props.value ? 1 : 0}`,
             transform: `${
-              this.state.focused ? 'translate(0, -18px)' : 'translate(10px, 0)'
+              this.state.focused || this.props.value
+                ? 'translate(0, -14px)'
+                : 'translate(10px, 0)'
             }`,
           }}
         >
@@ -134,9 +148,9 @@ class TextField extends React.PureComponent {
           {...props}
           error={error}
           name={name}
+          placeholder={placeholder || label}
           type={type}
           value={value || ''}
-          placeholder={placeholder || label}
           style={{
             height: '100%',
             width: '100%',
