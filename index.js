@@ -89,13 +89,6 @@ const StyledLegend = styled.legend`
   box-sizing: border-box;
 `;
 
-const ErrorText = styled.p`
-  color: red;
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
-`;
-
 class TextField extends React.PureComponent {
   state = {
     focused: false,
