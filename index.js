@@ -138,7 +138,7 @@ class TextField extends React.PureComponent {
             opacity: `${this.state.focused || this.props.value ? 1 : 0}`,
             transform: `${
               this.state.focused || this.props.value
-                ? 'translate(0, -14px)'
+                ? 'translate(0, -16px)'
                 : 'translate(10px, 0)'
             }`,
           }}
